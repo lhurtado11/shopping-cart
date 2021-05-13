@@ -4,10 +4,14 @@ const cards = document.getElementById('cards')
 const templateCard = document.getElementById('template-card').content
 
 const fragment = document.createDocumentFragment()
+// eventos
 // capturar los datos
 document.addEventListener('DOMContentLoaded', () => {
     fetchData()
 }) 
+cards.addEventListener('click', e => {
+    addCarrito(e)
+})
 // consumiendo la api.json
 const fetchData = async () => {
     try {
@@ -30,4 +34,10 @@ const pintarCards = data => {
         fragment.appendChild(clone)
  })
  cards.appendChild(fragment)
+}
+const addCarrito = e => {
+    if((e.target.classList.contains('btn-dark'))) {
+        setCarrito(e.target.parentElement)
+    }
+    e.stopPropagation()
 }
