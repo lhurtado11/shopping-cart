@@ -4,6 +4,7 @@ const cards = document.getElementById('cards')
 const templateCard = document.getElementById('template-card').content
 
 const fragment = document.createDocumentFragment()
+let carrito = {}
 // eventos
 // capturar los datos
 document.addEventListener('DOMContentLoaded', () => {
@@ -41,3 +42,18 @@ const addCarrito = e => {
     }
     e.stopPropagation()
 }
+
+const setCarrito = (obj) => {
+    const producto = {
+        id: obj.querySelector('.btn-dark').dataset.id,
+        title: obj.querySelector('h5').textContent,
+        precio: obj.querySelector('p').textContent,
+        cantidad: 1
+    }
+    if(carrito.hasOwnProperty(producto.id)) {
+        producto.cantidad = carrito[producto.id].cantidad + 1
+    }
+ // colección de datos ordenados por un valor de índice
+    carrito[producto.id] = {...producto}
+    pintarCarrito()
+ }
