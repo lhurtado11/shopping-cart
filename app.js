@@ -13,6 +13,12 @@ let carrito = {}
 // capturar los datos
 document.addEventListener('DOMContentLoaded', () => {
     fetchData()
+    // pregunta si existe información almacenada en el carrito
+    // guarda un respaldo de los datos
+    if(localStorage.getItem('carrito')) {
+        carrito = JSON.parse(localStorage.getItem('carrito'))
+        pintarCarrito()
+    }
 }) 
 cards.addEventListener('click', e => {
     addCarrito(e)
@@ -79,6 +85,8 @@ const setCarrito = (obj) => {
     })
     items.appendChild(fragment)
     pintarFooter()
+    //    guarda la info almacenada en el carrito de compras al actualizar la pagina web
+   localStorage.setItem('carrito', JSON.stringify(carrito))
  }
  const pintarFooter = () => {
     footer.innerHTML = ''
