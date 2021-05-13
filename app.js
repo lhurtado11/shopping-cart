@@ -83,7 +83,7 @@ const setCarrito = (obj) => {
         footer.innerHTML = `<th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>`
         return
     }
-
+// suma cantidades y precios de los productos
     const nCantidad = Object.values(carrito).reduce( (acc, {cantidad}) =>  acc + cantidad,0 )
     const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio}) => acc + cantidad * precio,0 )    
     
